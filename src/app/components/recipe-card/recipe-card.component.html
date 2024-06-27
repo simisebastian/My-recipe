@@ -1,0 +1,21 @@
+@if(recipes.length > 0) {
+  @for(recipe of recipes; track recipe.id) {
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+  
+  <h2>{{widthPx}}</h2>
+        <h5 class="card-title">{{recipe.recipe_name}}</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="onAddRecipe()" >Add</button>
+
+  }
+} @else {
+    <div>
+        Recipies not found! Click here to add one
+        <button class="btn btn-primary" (click)="onAddRecipe()" >Add</button>
+    </div>
+}

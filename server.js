@@ -27,7 +27,7 @@ pool.connect((err) => {
 });
 
 app.get('/api/recipes', (req, res) => {
-    pool.query('SELECT * FROM items', (err, result) => {
+    pool.query('SELECT * FROM recipes', (err, result) => {
       console.log(result);
       if (err) {
         console.error('Error executing query:', err);
@@ -38,19 +38,20 @@ app.get('/api/recipes', (req, res) => {
     });
   });
   
-  // app.post('/api/items', (req, res) => {
-  //   const { name, description } = req.body;
-  
-  //   pool.query(
-  //     'INSERT INTO items (name, description) VALUES ($1, $2) RETURNING *',
-  //     [name, description],
-  //     (err, result) => {
-  //       if (err) {
-  //         console.error('Error executing query:', err);
-  //         res.status(500).json({ error: 'Internal Server Error' });
-  //       } else {
-  //         res.json(result.rows[0]);
-  //       }
-  //     }
-  //   );
-  // });
+  app.post('/api/recipes/add-recipe', (req, res) => {
+    // const { name, description } = req.body;
+    const recipe_name = 'll';
+    const ingredients = {};
+    pool.query(
+      'INSERT INTO recipes(recipe_name) VALUES ($1) RETURNING *',
+      [recipe_name],
+      (err, result) => {
+        if (err) {
+          console.error('Error executing query:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          res.json(result.rows[0]);
+        }
+      }
+    );
+  });
